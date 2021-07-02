@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.14)  3 JUL 2021 04:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.14)  3 JUL 2021 04:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,7 +587,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: images/bundaran.png Graphic file (type png)
 <use images/bundaran.png>
 Package pdftex.def Info: images/bundaran.png  used on input line 110.
-(pdftex.def)             Requested size: 176.39923pt x 93.4661pt.
+(pdftex.def)             Requested size: 252.0pt x 133.52751pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 107--113
  \OT1/ptm/m/it/10 1) Bun-daran Sim-pang Em-pat: [][][] \OT1/ptm/m/n/10 Di-gu-na
@@ -599,51 +599,51 @@ File: images/bundaran_tanpa_simpang.png Graphic file (type png)
 <use images/bundaran_tanpa_simpang.png>
 Package pdftex.def Info: images/bundaran_tanpa_simpang.png  used on input line 
 119.
-(pdftex.def)             Requested size: 176.39923pt x 94.06184pt.
+(pdftex.def)             Requested size: 252.0pt x 134.37465pt.
 <images/rgb.png, id=152, 781.41937pt x 438.8897pt>
 File: images/rgb.png Graphic file (type png)
 <use images/rgb.png>
 Package pdftex.def Info: images/rgb.png  used on input line 135.
-(pdftex.def)             Requested size: 176.39923pt x 99.07407pt.
+(pdftex.def)             Requested size: 252.0pt x 141.53917pt.
 <images/segmentasi.png, id=153, 359.84438pt x 223.58531pt>
 File: images/segmentasi.png Graphic file (type png)
 <use images/segmentasi.png>
 Package pdftex.def Info: images/segmentasi.png  used on input line 141.
-(pdftex.def)             Requested size: 176.39923pt x 109.60551pt.
+(pdftex.def)             Requested size: 252.0pt x 156.5837pt.
 <images/grayscale.png, id=154, 359.84438pt x 225.09094pt>
 File: images/grayscale.png Graphic file (type png)
 <use images/grayscale.png>
 Package pdftex.def Info: images/grayscale.png  used on input line 151.
-(pdftex.def)             Requested size: 176.39923pt x 110.3436pt.
-<images/segmentasi_hitam_putih.jpeg, id=155, 484.81125pt x 300.12125pt>
-File: images/segmentasi_hitam_putih.jpeg Graphic file (type jpg)
-<use images/segmentasi_hitam_putih.jpeg>
-Package pdftex.def Info: images/segmentasi_hitam_putih.jpeg  used on input line
- 160.
-(pdftex.def)             Requested size: 176.39923pt x 109.20216pt.
+(pdftex.def)             Requested size: 252.0pt x 157.63814pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2 <./images/bundaran.png> <./images/bundaran_tanpa_simpang.png> <./images/rgb
-.png> <./images/segmentasi.png> <./images/grayscale.png>]
+.png> <./images/segmentasi.png>]
+<images/segmentasi_hitam_putih.jpeg, id=167, 484.81125pt x 300.12125pt>
+File: images/segmentasi_hitam_putih.jpeg Graphic file (type jpg)
+<use images/segmentasi_hitam_putih.jpeg>
+Package pdftex.def Info: images/segmentasi_hitam_putih.jpeg  used on input line
+ 160.
+(pdftex.def)             Requested size: 252.0pt x 155.99983pt.
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
 72.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<images/target_lane_line.png, id=171, 781.41937pt x 417.05812pt>
+<images/target_lane_line.png, id=169, 781.41937pt x 417.05812pt>
 File: images/target_lane_line.png Graphic file (type png)
 <use images/target_lane_line.png>
 Package pdftex.def Info: images/target_lane_line.png  used on input line 195.
 (pdftex.def)             Requested size: 252.0pt x 134.49861pt.
-<images/reward_anglediff_sketch.jpg, id=173, 652.4375pt x 590.205pt>
+<images/reward_anglediff_sketch.jpg, id=171, 652.4375pt x 590.205pt>
 File: images/reward_anglediff_sketch.jpg Graphic file (type jpg)
 <use images/reward_anglediff_sketch.jpg>
 Package pdftex.def Info: images/reward_anglediff_sketch.jpg  used on input line
  206.
 (pdftex.def)             Requested size: 252.0pt x 227.9636pt.
-
+ [3 <./images/grayscale.png> <./images/segmentasi_hitam_putih.jpeg> <./images/t
+arget_lane_line.png> <./images/reward_anglediff_sketch.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 214--216
 []\OT1/ptm/m/it/10 Reward \OT1/ptm/m/n/10 2: De-vi-asi jarak dari \OT1/ptm/m/it
 /10 tar-get lane
@@ -654,52 +654,44 @@ Underfull \hbox (badness 7186) in paragraph at lines 214--216
 \OT1/ptm/m/n/10 Re-ward yang di-gu-nakan pada re-ward 2 adalah
  []
 
-<images/reward_deviasi_jarak.png, id=174, 408.52625pt x 429.605pt>
+<images/reward_deviasi_jarak.png, id=188, 408.52625pt x 429.605pt>
 File: images/reward_deviasi_jarak.png Graphic file (type png)
 <use images/reward_deviasi_jarak.png>
 Package pdftex.def Info: images/reward_deviasi_jarak.png  used on input line 21
 9.
 (pdftex.def)             Requested size: 214.20154pt x 225.25757pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3 <./images/segmentasi_hitam_putih.jpeg> <./images/target_lane_line.png> <./i
-mages/reward_anglediff_sketch.jpg>]
-<images/punishment_lane_line.png, id=191, 780.66656pt x 417.81094pt>
+<images/punishment_lane_line.png, id=190, 780.66656pt x 417.81094pt>
 File: images/punishment_lane_line.png Graphic file (type png)
 <use images/punishment_lane_line.png>
 Package pdftex.def Info: images/punishment_lane_line.png  used on input line 23
 6.
 (pdftex.def)             Requested size: 252.0pt x 134.8689pt.
-<images/waypoint.png, id=192, 250.2951pt x 133.4586pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<images/waypoint.png, id=191, 250.2951pt x 133.4586pt>
 File: images/waypoint.png Graphic file (type png)
 <use images/waypoint.png>
 Package pdftex.def Info: images/waypoint.png  used on input line 252.
 (pdftex.def)             Requested size: 252.0pt x 134.37465pt.
-<images/waypoint_fromside.png, id=194, 1043.9pt x 557.08125pt>
+<images/waypoint_fromside.png, id=193, 1043.9pt x 557.08125pt>
 File: images/waypoint_fromside.png Graphic file (type png)
 <use images/waypoint_fromside.png>
 Package pdftex.def Info: images/waypoint_fromside.png  used on input line 263.
 (pdftex.def)             Requested size: 252.0pt x 134.47575pt.
-<images/reward_alpha.png, id=196, 192.72pt x 230.8625pt>
+ [4 <./images/reward_deviasi_jarak.png> <./images/punishment_lane_line.png> <./
+images/waypoint.png> <./images/waypoint_fromside.png>]
+<images/reward_alpha.png, id=211, 192.72pt x 230.8625pt>
 File: images/reward_alpha.png Graphic file (type png)
 <use images/reward_alpha.png>
 Package pdftex.def Info: images/reward_alpha.png  used on input line 272.
 (pdftex.def)             Requested size: 126.0pt x 150.93597pt.
- [4 <./images/reward_deviasi_jarak.png> <./images/punishment_lane_line.png> <./
-images/waypoint.png> <./images/waypoint_fromside.png> <./images/reward_alpha.pn
-g>]
-Underfull \vbox (badness 2680) has occurred while \output is active []
-
-<images/metodologi.png, id=215, 885.3075pt x 433.62pt>
+<images/metodologi.png, id=213, 885.3075pt x 433.62pt>
 File: images/metodologi.png Graphic file (type png)
 <use images/metodologi.png>
 Package pdftex.def Info: images/metodologi.png  used on input line 409.
 (pdftex.def)             Requested size: 252.0pt x 123.42418pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
+ [5 <./images/reward_alpha.png>]
 <images/tensorboard_bundaran_simpangempat_segmentasi_grayscale.png, id=225, 674
 .52pt x 386.94562pt>
 File: images/tensorboard_bundaran_simpangempat_segmentasi_grayscale.png Graphic
@@ -805,7 +797,7 @@ e/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
 /times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on conference_041818.pdf (9 pages, 7467222 bytes).
+Output written on conference_041818.pdf (9 pages, 7467297 bytes).
 PDF statistics:
  316 PDF objects out of 1000 (max. 8388607)
  265 compressed objects within 3 object streams

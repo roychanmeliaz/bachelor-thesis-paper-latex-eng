@@ -101,7 +101,7 @@
 	
 \subsection{Persiapan Lingkungan Simulasi}
 \label{sec:simulasi}
-Menggunakan simulator CARLA, digunakan map Town03 CARLA, yang memiliki bundaran dan u-turn untuk memfasilitasi pengerjaan tugas akhir. Terdapat dua jenis bundaran yang digunakan pada tugas akhir ini.
+Menggunakan simulator CARLA, digunakan map Town03 CARLA, yang memiliki bundaran dan u-turn untuk memfasilitasi pengerjaan penelitian. Terdapat dua jenis bundaran yang digunakan pada penelitian ini.
 
 \subsubsection{Bundaran Simpang Empat}
 Digunakan bundaran berjumlah simpang empat seperti pada Gambar  \ref{fig:bundaran_town03}. Pada lingkungan ini, agent akan \textit{spawn }dari empat titik \textit{spawn} di sekitar bundaran.
@@ -142,7 +142,7 @@ Data citra diambil dari sensor dengan ukuran 480x270. Citra yang digunakan adala
 	\caption{Citra Segmentasi}
 	\label{fig:segmentasi}
 \end{figure}
-Ada dua jenis citra yang digunakan dalam tugas akhir ini, yaitu citra segmentasi grayscale dan citra segmentasi lanjutan.
+Ada dua jenis citra yang digunakan dalam penelitian ini, yaitu citra segmentasi grayscale dan citra segmentasi lanjutan.
 
 Citra segmentasi grayscale merupakan citra segmentasi yang kemudian diberi filter grayscale agar dapat meminimalkan data yang dianalisa namun tetap mempertahankan fitur yang ada.
 
@@ -285,7 +285,7 @@ Episode akan berakhir jika waktu maksimal episode berakhir atau agent menyentuh 
 
 \subsection{Parameter DQN}
 \label{sec:parameter_dqn}
-Penentuan nilai hyperparameter yang tepat merupakan salah satu langkah yang penting dilakukan untuk mendapatkan model pembelajaran mesin yang baik. Dalam machine learning, hyperparameter adalah parameter yang digunakan untuk mengatur jalannya proses pembelajaran mesin. Berbeda dengan parameter model yang nilainya mengalami perubahan seiring berjalannya pembelajaran mesin, hyperparameter perlu didefinisikan di awal dan umumnya bernilai tetap sepanjang proses pembelajaran. Dalam tugas akhir ini, hyperparameter dari algoritma DQN didefinisikan sebagai berikut:
+Penentuan nilai hyperparameter yang tepat merupakan salah satu langkah yang penting dilakukan untuk mendapatkan model pembelajaran mesin yang baik. Dalam machine learning, hyperparameter adalah parameter yang digunakan untuk mengatur jalannya proses pembelajaran mesin. Berbeda dengan parameter model yang nilainya mengalami perubahan seiring berjalannya pembelajaran mesin, hyperparameter perlu didefinisikan di awal dan umumnya bernilai tetap sepanjang proses pembelajaran. Dalam penelitian ini, hyperparameter dari algoritma DQN didefinisikan sebagai berikut:
 
 \subsubsection{Model}
 \label{sec:model}
@@ -411,7 +411,7 @@ Diberikan konvolusi kepada citra image sebanyak 3 kali. Setiap konvolusi dilakuk
 	\label{fig:blockdiagram}
 \end{figure}
 
-Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodologi training dari tugas akhir ini terdapat pada Gambar \ref{fig:blockdiagram}. \textit{Agent} yang berada pada simulasi melakukan suatu \textit{action} yang menyebabkan berubahnya \textit{state}. \textit{State} yang berupa citra segmentasi dan kecepatan agent (kmpj) serta \textit{reward }dari \textit{agent} kemudian dikirimkan ke DQN untuk dilakukan training. Hasil dari training berupa \textit{policy },  akan menentukan\textit{action} yang kemudian akan dilaksanakan oleh \textit{agent}. Kemudian proses tersebut akan terulang kembali menjadi sebuah siklus yang tak henti.
+Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodologi training dari penelitian ini terdapat pada Gambar \ref{fig:blockdiagram}. \textit{Agent} yang berada pada simulasi melakukan suatu \textit{action} yang menyebabkan berubahnya \textit{state}. \textit{State} yang berupa citra segmentasi dan kecepatan agent (kmpj) serta \textit{reward }dari \textit{agent} kemudian dikirimkan ke DQN untuk dilakukan training. Hasil dari training berupa \textit{policy },  akan menentukan\textit{action} yang kemudian akan dilaksanakan oleh \textit{agent}. Kemudian proses tersebut akan terulang kembali menjadi sebuah siklus yang tak henti.
 
 	
 	

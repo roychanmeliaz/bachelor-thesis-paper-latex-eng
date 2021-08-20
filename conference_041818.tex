@@ -19,13 +19,14 @@
 \usepackage{subcaption}
 
 \usepackage{float}
+\usepackage[shortlabels]{enumitem}
 
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 	
-	\title{Manuver \textit{Autonomous Car }ITS di Bundaran atau \textit{U-Turn} Menggunakan \textit{Deep Reinforcement Learning}}
+	\title{ITS Autonomous Car Maneuver at Roundabouts or U-Turn using Deep Reinforcement Learning}
 	
 	\makeatletter
 	\newcommand{\linebreakand}{%
@@ -76,75 +77,73 @@
 	
 	
 	\begin{abstract}
-		\textit{\textit{Autonomus Car }atau kendaraan otonom merupakan kendaraan yang memiliki kemampuan untuk berkendara secara mandiri layaknya dikendalikan manusia dengan mengunakan rangkaian kecerdasan buatan. Pada penelitian ini kami mengajukan riset pengembangan kendaraan otonom iCar ITS (\textit{Intelligent Car }Institut Teknologi Sepuluh Nopember) dengan mengembangkan sistem manuver kendaraan otonom di bundaran atau u-turn dalam lingkungan yang disimulasikan. Dalan lingkungan simulasi, model yang digunakan adalah model kendaraan yang disesuaikan dengan iCar. Pengembangan sistem navigasi dan manuver kendaraan otonom dilakukan menggunakan metode \textit{Deep Reinforcement Learning}, salah satu cabang dari \textit{Machine Learning}. Pada penelitian ini, didapatkan hasil model reinforcement learning yang mampu melakukan manuver bundaran simpang empat dan bundaran tanpa simpang dengan nilai rerata deviasi sudut dari jalurnya masing-masing senilai 27.011° dan 30.068°, mampu bermanuver tanpa \textit{collision} selama rerata 13.3 detik dan 7.9 detik, serta dengan kecepatan rerata 27.0 kmpj dan 28.5 kmpj.}
+		\textit{An autonomous car or autonomous vehicle is a vehicle
+		which has the ability to drive independently as if controlled by humans using a series of artificial intelligence. In this study, we propose research on the development of an autonomous vehicle iCar ITS (Intelligent Car Institut Teknologi Sepuluh Nopember) by developing a maneuvering system for autonomous vehicles at roundabouts or u-turns in a simulated environment. In the simulation environment, the model used is a vehicle model adapted to iCar. The development of autonomous vehicle navigation and maneuvering systems is carried out using the Deep Reinforcement Learning method, a branch of Machine Learning. From this research, the results obtained are reinforcement learning models that are able to maneuver at roundabouts with intersections and roundabouts without intersections with a mean deviation value of the angle of the path of 27,011° and 30,068°, respectively, able to maneuver without collision for an average of 13.3 seconds and 7.9 seconds, and with an average speed of 27.0 kmph and 28.5 kmph.}
 	\end{abstract}
 	\begin{IEEEkeywords}
-		\textit{Kendaraan otonom, Reinforcement Learning, Simulasi}
+		\textit{Autonomous Vehicle, Reinforcement Learning, Deep Learning, Simulation}
 	\end{IEEEkeywords}
 	
-	\section{Latar Belakang}
-	\IEEEPARstart{T}{eknologi} kendaraan otonom memiliki sejarah yang cukup panjang. Purwarupa pertama yang dapat berfungsi dengan baik diciptakan pada tahun 1980. Dengan menggunakan kamera, purwarupa ini berhasil menempuh 100km jalan kosong tanpa perlu dikemudikan oleh manusia. Dengan keberhasilan ini, muncul banyak proyek pada tahun 80-an dan 90-an menggunakan sistem serupa yang digunakan untuk menyetir melalui jalan raya, baik pada lalu lintas ringan atau tidak ada sama sekali. Dalam pengembangannya, kendaraan otonom dapat memecahkan masalah keselamatan berkendara dan efisiensinya. Maka dari itu, tujuan utama dilakukan penelitian adalah untuk mencegah atau mengurangi kecelakaan lalu lintas, mengurangi waktu orang berkendara, serta mengurangi emisi karbon.\cite{cit:autonomous_vehicle_future}\par
+	\section{Introduction}
+	\IEEEPARstart{A}{utonomous} vehicle technology has a long history. The first fully functional prototype was built in 1980. Using a camera, this prototype managed to cover 100km of empty roads without needing to be steered by humans. With this success came many projects in the 80s and 90s using similar systems used for driving through highways, in either light or no traffic. In its development, autonomous vehicles can solve the problem of driving safety and efficiency. Therefore, the main objective of the research is to prevent or reduce traffic accidents, reduce the time people drive, and reduce carbon emissions.\cite{cit:autonomous_vehicle_future}\par
 	
-	Salah satu produk \textit{autonomous car }yang tengah dikembangkan adalah iCar ITS (\textit{Intelligent Car }Institut Teknologi Sepuluh Nopember). iCar ITS merupakan purwarupa mobil yang dilengkapi dengan fitur pengemudian secara otonom sebagai hasil riset kolaborasi dari para peneliti ITS dengan berbagai bidang keahlian.\cite{cit:icar_menristekbrin} iCar ITS dioperasikan sebagai mobil komuter yang melayani perjalanan penumpang menuju berbagai tujuan dalam kampus ITS.\cite{cit:icar_its_news}
+	One of the autonomous car products being developed is iCar ITS (Intelligent Car Institute of Technology Ten November). iCar ITS is a prototype car equipped with autonomous driving features as a result of collaborative research from ITS researchers with various fields of expertise.\cite{cit:icar_menristekbrin} iCar ITS is operated as a commuter car that serves passenger trips to various destinations within the ITS campus.\cite{cit:icar_its_news}
 	
-	\iffalse
-	Salah satu produk kendaraan otonom yang tengah dikembangkan adalah iCar ITS, sebuah mobil yang dilengkapi dengan fitur pengemudian secara otonom yang akan berkeliling di kampus ITS sebagai mobil komuter untuk mengantarkan penumpang menuju berbagai lokasi yang di kehendaki di dalam kampus. Mobil otonom yang dikembangkan oleh ITS dengan nama iCar ITS (Intelligent Car ITS) merupakan purwarupa mobil otonom hasil kolaborasi dari peneliti-peneliti di ITS dari berbagai bidang keahlian. iCar ITS dioperasikan sebagai mobil komuter yang melayani perjalanan dalam kampus ITS.\par
-	\fi
 	
-	Metode yang lazim digunakan untuk mengembangkan kendaraan otonom adalah \textit{reinforcement learning}, sebuah bagian dari \textit{machine learning }yang juga merupakan bagian dari \textit{artificial intelligence}. \textit{Reinforcement Learning }adalah sebuah metode pembelajaran mengenai apa yang mesti dilakukan (mengimplementasikan aksi kedalam situasi) pada sebuah masalah/\textit{problem }untuk mendapatkan hasil/\textit{reward }yang maksimal. \textit{Agent }tidak diberi \textit{clue }mengenai aksi apa yang harus dilakukan. \textit{Agent }akan mempelajari aksi dengan prinsip \textit{Trial and Error}, lalu mengambil keputusan berdasarkan \textit{reward }yang didapatkan (\textit{reward }maksimal).
+	A commonly used method for developing autonomous vehicles is reinforcement learning, a subset of machine learning that is also a subset of artificial intelligence. Reinforcement Learning is a learning method about what to do (implement actions into situations) on a problem/problem to get maximum results/reward. Agents are not given instructions on what actions to take. Agent will take action with the principle of Trial and Error, then make a decision based on the reward obtained (maximum reward).
 	
-	Dalam pengaplikasiannya, iCar ITS masih menggunakan metode tradisional rule-based tanpa memanfaatkan metode \textit{machine learning}. Metode tersebut tidak cukup baik karena pengembang harus memprogram secara manual setiap skenario yang akan dihadapi oleh iCar. Metode tersebut tidak akan bertahan lama mengingat banyaknya skenario dunia nyata yang hampir tidak mungkin untuk diberi solusi secara manual.
+	In its application, iCar ITS still uses the traditional rule-based method without utilizing machine learning methods. This method is not good enough because the developer has to manually program every scenario that the iCar will face. This method will not last long given the number of real-world scenarios that are almost impossible to solve manually.
 	
-	\section{Desain dan Implementasi Sistem}
+	\section{System Design and Implementation}
 	\vspace{1ex}
-	Pada \textit{paper} ini dijelaskan mengenai penerapan metode \textit{Deep Reinforcement Learning} yang bertujuan untuk meciptakan algoritma pada mobil otonom yang mampu melakukan manuver di bundaran/u-turn dengan efisien.
+	This section describes the application of the Deep Reinforcement Learning method which aims to create an algorithm for an autonomous car capable of efficiently maneuvering roundabouts or u-turns.
 	
-\subsection{Persiapan Lingkungan Simulasi}
+\subsection{Simulation Environment Preparation}
 \label{sec:simulasi}
-Menggunakan simulator CARLA, digunakan map Town03 CARLA, yang memiliki bundaran dan u-turn untuk memfasilitasi pengerjaan penelitian. Terdapat dua jenis bundaran yang digunakan pada penelitian ini.
+Using the CARLA simulator, the Town03 CARLA map is used, which has a roundabout and a u-turn to facilitate research work. There are two types of roundabouts used in this study.
 
-\subsubsection{Bundaran Simpang Empat}
-Digunakan bundaran berjumlah simpang empat seperti pada Gambar  \ref{fig:bundaran_town03}. Pada lingkungan ini, agent akan \textit{spawn }dari empat titik \textit{spawn} di sekitar bundaran.
+\subsubsection{Roundabout with Intersections}
+The four-way roundabout is used as shown in Figure \ref{fig:bundaran_town03}. In this environment, the agent will spawn from four spawn points around the roundabout.
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\linewidth]{images/bundaran}
-	\caption{Bundaran Simpang Empat}
+	\caption{Roundabout with Intersections}
 	\label{fig:bundaran_town03}
 \end{figure}
 
-\subsubsection{Bundaran Tanpa Simpang}
-Digunakan bundaran tanpa simpang seperti pada Gambar  \ref{fig:bundaran_tanpa_simpang}. Pada lingkungan ini, agent akan \textit{spawn }dari sebuah titik \textit{spawn} awal bundaran.
+\subsubsection{Roundabout without Intersection}
+A roundabout without an intersection is used as shown in Figure  \ref{fig:bundaran_tanpa_simpang}. In this environment, the agent will spawn from an initial spawn point of the roundabout.
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\linewidth]{images/bundaran_tanpa_simpang}
-	\caption{Bundaran Tanpa Simpang}
+	\caption{Roundabout without Intersection}
 	\label{fig:bundaran_tanpa_simpang}
 \end{figure}
 
-\subsection{Sensor}
+\subsection{Sensors}
 \label{sec:sensor}
-Sensor menggunakan sensor kamera yang diletakkan secara fisik di bagian depan bawah dari agen. Sensor kamera yang digunakan adalah sensor kamera segmentasi. Sensor kamera segmentasi adalah sensor kamera yang memisahkan object-object di simulator menjadi berbagai warna unik yang solid. Citra yang dihasilkan dari sensor kamera segmentasi pada Gambar \ref{fig:segmentasi} adalah citra lanjutan yang telah di proses dari citra RGB pada gambar \ref{fig:citra_rgb}
+In this study, a camera sensor is used which is physically placed on the lower front of the agent. The camera sensor used is a segmentation camera sensor. The segmentation camera sensor is a camera sensor that separates objects in the simulator into a variety of unique solid colors. The image generated from the segmentation camera sensor in Figure  \ref{fig:segmentasi} is an advanced image that has been processed from the RGB image in Figure \ref{fig:citra_rgb}
 
 
-\subsection{Akuisisi Data}
+\subsection{Data Acquisition}
 \label{sec:akuisisi_data}
-Data citra diambil dari sensor dengan ukuran 480x270. Citra yang digunakan adalah citra segmentasi yang telah disediakan oleh sensor kamera segmentasi dari CARLA Simulator. Terlihat pada Gambar \ref{fig:citra_rgb} merupakan citra awal. Kemudian dilakukan segmentasi pada citra tersebut sehingga setiap obyek dipresentasikan dengan warna solid seperti pada Gambar \ref{fig:segmentasi}
+Image data is taken from the sensor with a size of 480x270. The image used is a segmented image that has been provided by the segmentation camera sensor from the CARLA Simulator. Seen in Figure \ref{fig:citra_rgb} is the initial image. Then segmentation is carried out on the image so that each object is presented with a solid color as shown in Figure \ref{fig:segmentasi}
 
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\linewidth]{images/rgb}
-	\caption{Citra RGB}
+	\caption{RGB Image}
 	\label{fig:citra_rgb}
 \end{figure}
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\linewidth]{images/segmentasi}
-	\caption{Citra Segmentasi}
+	\caption{Segmented Image}
 	\label{fig:segmentasi}
 \end{figure}
-Ada dua jenis citra yang digunakan dalam penelitian ini, yaitu citra segmentasi grayscale dan citra segmentasi lanjutan.
+There are two types of images used in this study, namely grayscale segmentation images and advanced segmentation images.
 
-Citra segmentasi grayscale merupakan citra segmentasi yang kemudian diberi filter grayscale agar dapat meminimalkan data yang dianalisa namun tetap mempertahankan fitur yang ada.
+Grayscale segmentation image is a segmented image which is then given a grayscale filter in order to minimize the analyzed data but still maintain the existing features.	
 
 \begin{figure}[H] 
 	\centering
@@ -153,7 +152,7 @@ Citra segmentasi grayscale merupakan citra segmentasi yang kemudian diberi filte
 	\label{fig:grayscale}
 \end{figure}
 
-Citra segmentasi lanjutan merupakan citra segmentasi, yang kemudian di segmentasi kembali menjadi dua jenis obyek, yaitu \textit{drivable }dan \textit{non-drivable}. Obyek \textit{drivable} dipresentasikan dengan warna putih dan obyek \textit{non-drivable} dipresentasikan dengan warna hitam.
+The advanced segmentation image is a segmented image, which is then re-segmented into two types of objects, namely drivable and non-drivable. Drivable objects are represented in white and non-drivable objects are represented in black.
 
 \begin{figure}[H] 
 	\centering
@@ -162,33 +161,33 @@ Citra segmentasi lanjutan merupakan citra segmentasi, yang kemudian di segmentas
 	\label{fig:segmentasi_hitam_putih}
 \end{figure}
 
-Citra segmentasi grayscale dan citra segmentasi lanjutan akan menjadi hasil akhir akuisi citra yang kemudian akan diberikan ke algoritma DQN untuk melakukan \textit{training} model dan/atau \textit{inference} model.
+Grayscale segmentation images and advanced segmentation images will be the final result of image acquisition which will then be given to the DQN algorithm to perform model training and/or inference models.
 
 \subsection{\textit{Action}}
 \label{sec:action}
-Ada 3 \textit{action} yang bisa dilakukan oleh \textit{agent}. Diantaranya:
+There are 3 actions that the agent can take. Among them are:
 
-\begin{enumerate}[nolistsep]
+\begin{enumerate}
 	\item \verb=forward=
 	
-	\textit{Agent} \textit{throttle} dengan nilai 1 dan \textit{steer} dengan nilai 0. Dengan demikian agent akan melakukan gerakan manuver maju.
+	Agent throttle with a value of 1 and steer with a value of 0. Thus the agent will perform a forward maneuver.
 	
 	\item \verb=forward_left=
 	
-	Agen \textit{throttle} dengan nilai 1 dan \textit{steer} dengan nilai -1. Dengan demikian agent akan melakukan gerakan manuver maju ke depan kiri.
-	
+	Agent throttle with a value of 1 and steer with a value of -1. Thus the agent will perform a forward left maneuver.
+		
 	\item \verb=forward_right=
 	
-	Agen \textit{throttle} dengan nilai 1 dan \textit{steer} dengan nilai 1. Dengan demikian agent akan melakukan gerakan manuver maju ke depan kanan.
-	
+	Agent throttle with a value of 1 and steer with a value of 1. Thus the agent will perform a forward right maneuver.
+		
 \end{enumerate}
 
 \subsection{\textit{Reward Function}}
 \label{sec:sistem_reward}
 
-Fungsi reward dirancang agar mobil otonom mampu bergerak sepanjang lintasan dengan cepat dan aman.
+The reward function is designed to allow autonomous cars to move along the track quickly and safely.
 
-\subsubsection{Bundaran Simpang Empat}Ada dua buah reward yang ditetapkan dimana masing-masing reward memperhatikan referensi \textit{target lane}. Target lane adalah garis imajiner yang menjadi target gerakan mobil otonom. Terlihat pada Gambar \ref{fig:target_lane_line}, \textit{target lane} digambarkan dengan titik-titik merah di sekitar bundaran.
+\subsubsection{Roundabout with Intersections}There are four rewards set. Each reward pays attention to the reference lane target. The target lane is an imaginary line that is the target of the autonomous car movement. Seen in Figure  \ref{fig:target_lane_line}, the target lane is depicted with red dots around the roundabout.
 
 \begin{figure}[H] 
 	\centering
@@ -197,9 +196,9 @@ Fungsi reward dirancang agar mobil otonom mampu bergerak sepanjang lintasan deng
 	\label{fig:target_lane_line}
 \end{figure}
 
-\begin{enumerate}
-\item \textit{Reward} 1: Deviasi sudut dari \textit{target lane}
-Reward yang digunakan pada Reward 1 adalah 1/alpha. Alpha adalah sudut agent yang menyimpang dari \textit{target lane}. Teknis alpha dijelaskan pada Gambar \ref{fig:reward_anglediff_sketch}. 
+\begin{enumerate}[a)]
+\item \textit{Reward} 1: Angle deviation from the target lane.
+The reward used in Reward 1 is 1/alpha. Alpha is the angle of the agent that deviates from the target lane. The alpha technique is described in Figure  \ref{fig:reward_anglediff_sketch}. 
 
 \begin{figure}[H] 
 	\centering
@@ -208,11 +207,10 @@ Reward yang digunakan pada Reward 1 adalah 1/alpha. Alpha adalah sudut agent yan
 	\label{fig:reward_anglediff_sketch}
 \end{figure}
 
-Garis hitam merupakan vektor tegak lurus antara titik pusat bundaran ke titik pusat agen. Lalu garis merah adalah vektor arah mobil. Dari kedua nilai tersebut, didapat alpha yang merupakan sudut dari kedua vektor tersebut. Kemudian nilai reward didefinisikan dengan 1/alpha. Nilai tertinggi reward dibatasi menjadi 1. Hal ini dilakukan agar fluktuasi reward yang diberikan ke agent tidak terlalu tinggi untuk perubahan nilai yang kecil.
+The black line is a perpendicular vector from the center of the circle to the center of the agent. Then the red line is the direction vector of the car. From these two values, we get alpha which is the angle of the two vectors. Then the reward value is defined by 1/alpha. The highest reward value is limited to 1. This is done so that the fluctuation of the reward given to the agent is not too high for a small change in value.
 
-
-\item{\textit{Reward} 2: Deviasi jarak dari \textit{target lane}}
-Reward yang digunakan pada reward 2 adalah \verb=1/deviasi_jarak*10=. Deviasi jarak adalah jarak terkecil agen terhadap \textit{target lane} dalam meter.
+\item \textit{Reward} 2: Distance deviation from the target lane.
+The reward used in reward 2 is 1/distance\_deviation*10. Distance deviation is the agent's smallest distance from the target lane in meters.
 
 \begin{figure}[H] 
 	\centering
@@ -220,32 +218,32 @@ Reward yang digunakan pada reward 2 adalah \verb=1/deviasi_jarak*10=. Deviasi ja
 	\caption{Reward 2}
 	\label{fig:reward_deviasi_jarak}
 \end{figure}
-Nilai tertinggi reward dibatasi menjadi 1. Hal ini dilakukan agar fluktuasi reward yang diberikan ke agent juga tidak terlalu tinggi untuk perubahan nilai yang kecil, seperti pada Reward 1.
+The highest reward value is limited to 1. This is done so that the fluctuations in the reward given to the agent are not too high for a small change in value, as in Reward 1.
 
 
-Selain reward yang bernilai positif, diperlukan juga reward yang bernilai negatif untuk mengurangi peluang agent melakukan hal yang sebaiknya tidak dilakukan. Ada dua buah reward bernilai negatif yang diberikan.
+In addition to positive rewards, negative rewards are also needed to reduce the opportunity for agents to do things that should not be done. There are two negative rewards given.
 
-\item{\textit{Reward} 3: Sentuhan dengan obyek lain}
-Reward senilai -1 akan diberikan pada \textit{agent} jika agent menyentuh obyek lain selain jalan raya, tanah, dan trotoar.
+\item \textit{Reward} 3: Collision with other objects.
+A reward of -1 will be given to the agent if the agent touches other objects other than roads, ground, and sidewalks.
 
-\item{\textit{Reward} 4: Deviasi jarak terlalu besar}
-Reward senilai -0.5 akan diberikan pada \textit{agent} jika jarak antara \textit{agent} dan bundaran lebih besar dari 30 meter. Jarak 30 meter dari bundaran dapat dilihat di Gambar \ref{fig:punishment_lane_line}
+\item \textit{Reward} 4: Distance deviation too big.
+A reward of -0.5 will be given to the agent if the distance between the agent and the roundabout is greater than 30 meters. The distance of 30 meters from the roundabout can be seen in Figure \ref{fig:punishment_lane_line}
 
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\linewidth]{images/punishment_lane_line}
-	\caption{Batasan jarak}
+	\caption{Distance Limit}
 	\label{fig:punishment_lane_line}
 \end{figure}
 
-\item{\textit{Reward }Total}
-Total nilai reward didefinisikan dengan Reward 1 + Reward 2 + Reward 3 + Reward 4.
+\item{Total \textit{Reward }}
+The total reward value is defined as Reward 1 + Reward 2 + Reward 3 + Reward 4.
 
 \end{enumerate}
 
 
-\subsubsection{Bundaran Tanpa Simpang}
-Pada bundaran tanpa simpang, fungsi reward yang diberikan berbeda. Pada kasus ini disediakan titik-titik jalur sebagai \textit{waypoint} yang harus diikuti oleh \textit{agent}.
+\subsubsection{Roundabout without Intersection}
+At roundabouts without intersections, the reward function given is different. In this case, path points are provided as waypoints that the agent must follow.
 
 \begin{figure}[H] 
 	\centering
@@ -254,38 +252,48 @@ Pada bundaran tanpa simpang, fungsi reward yang diberikan berbeda. Pada kasus in
 	\label{fig:waypoint}
 \end{figure}
 
-\textit{Waypoint} merupakan titik-titik pada map sebagai target tujuan jalannya \textit{agent}. Terlihat pada Gambar \ref{fig:waypoint}, titik-titik merah merupakan ilustrasi dari waypoint. Waypoint berjumlah 100 titik dimana setiap titiknya berjarak satu meter.
+Waypoints are points on the map as the target destination for the agent. Seen in Figure \ref{fig:waypoint}, the red dots are illustrations of waypoints. Waypoints are 100 physical points where each point is one meter apart.
 
-Reward didefinisikan dengan 1/alpha. Alpha merupakan deviasi sudut arah \textit{agent }terhadap arah titik \textit{waypoint} terdekat dari \textit{agent} + 5.
+\begin{enumerate}[a)]
+\item \textit{Reward} 1: Angle deviation from \textit{waypoint}.
+Rewards are defined by 1/alpha. Alpha is the angle deviation of the agent direction to the direction of the nearest waypoint from the agent + 5.
 
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\linewidth]{images/waypoint_fromside}
-	\caption{\textit{Waypoint }dari Sisi \textit{Agent}}
+	\caption{\textit{Waypoint }from \textit{Agent's} Side}
 	\label{fig:waypoint_fromside}
 \end{figure}
 
-Gambar \ref{fig:waypoint_fromside} menunjukkan bahwa \textit{waypoint} terdekat + 5 dari \textit{agent} berjarak enam meter dari pusat koordinat \textit{agent}.
+Figure \ref{fig:waypoint_fromside} shows that the closest +5 waypoint from the agent is six meters from the agent's coordinate center.
 
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=.5\linewidth]{images/reward_alpha}
-	\caption{Reward Alpha}
+	\caption{Alpha Reward}
 	\label{fig:reward_alpha}
 \end{figure}
 
-Ilustrasi fungsi reward dapat dilihat pada Gambar \ref{fig:reward_alpha}, dimana titik-titik hijau adalah \textit{waypoints}, garis merah adalah arah dari \textit{agent}, garis hitam adalah arah dari \textit{agent} ke \textit{waypoint}+5 dari \textit{agent}, serta alpha adalah perbedaan sudut dari kedua nilai sudut tersebut. Nilai tertinggi reward dibatasi menjadi 1. Hal ini dilakukan agar fluktuasi reward yang diberikan ke agent juga tidak terlalu tinggi untuk perubahan nilai yang kecil, seperti pada Reward 1 dan Reward 2 pada bundaran simpang empat.
+The illustration of the reward function can be seen in Figure \ref{fig:reward_alpha}, where the green dots are waypoints, the red line is the direction of the agent, the black line is the direction from the agent to the waypoint+5 of the agent, and alpha is the angle difference between the two angle values. The highest reward value is limited to 1. This is done so that the fluctuations in the reward given to the agent are not too high for small changes in value, such as in Reward 1 and Reward 2 at the four-way roundabout.
+
+\item{\textit{Reward} 3: Collision with other objects}
+A reward of -1 will be given to the agent if the agent touches other objects other than roads, ground, and sidewalks.
+
+\item{Total \textit{Reward }}
+The total reward value is defined as Reward 1 + Reward 2.
+
+\end{enumerate}
 
 
-\subsubsection{End Episode}
+\subsection{End Episode}
 \label{sec:end_episode}
-Waktu maksimal yang diberikan pada agent untuk melakukan proses learning setiap episodenya adalah 10 detik.
+The maximum time given to the agent to carry out the learning process for each episode is 10 seconds.
 
-Episode akan berakhir jika waktu maksimal episode berakhir atau agent menyentuh object lain selain jalan raya, tanah, dan trotoar.
+The episode will end if the maximum time of the episode ends or the agent touches other objects other than roads, dirt, and sidewalks.
 
-\subsection{Parameter DQN}
+\subsection{DQN Parameters}
 \label{sec:parameter_dqn}
-Penentuan nilai hyperparameter yang tepat merupakan salah satu langkah yang penting dilakukan untuk mendapatkan model pembelajaran mesin yang baik. Dalam machine learning, hyperparameter adalah parameter yang digunakan untuk mengatur jalannya proses pembelajaran mesin. Berbeda dengan parameter model yang nilainya mengalami perubahan seiring berjalannya pembelajaran mesin, hyperparameter perlu didefinisikan di awal dan umumnya bernilai tetap sepanjang proses pembelajaran. Dalam penelitian ini, hyperparameter dari algoritma DQN didefinisikan sebagai berikut:
+Determining the right hyperparameter value is one of the important steps taken to get a good machine learning model. In machine learning, hyperparameters are parameters used to regulate the course of the machine learning process. In contrast to model parameters whose values change as machine learning progresses, hyperparameters need to be defined up front and are generally constant throughout the learning process. In this study, the hyperparameters of the DQN algorithm are defined as follows:
 
 \subsubsection{Model}
 \label{sec:model}
@@ -293,7 +301,7 @@ Penentuan nilai hyperparameter yang tepat merupakan salah satu langkah yang pent
 	\resizebox{\columnwidth}{!}{%
 		\begin{tabular}{|l|l|l|}
 			\hline
-			\textbf{Hyperparameter}   & \textbf{Nilai} & \textbf{Deskripsi}                                                                                                                            \\ \hline
+			\textbf{Hyperparameter}   & \textbf{Value} & \textbf{Description}                                                                                                                            \\ \hline
 			MINIBATCH\_SIZE           & 16             & \begin{tabular}[c]{@{}l@{}}Jumlah sampel pembelajaran yang\\ diproses oleh perhitungan SGD\\ (stochastic gradient) algoritma DQN\end{tabular} \\ \hline
 			PREDICTION\_BATCH\_SIZE   & 1              & \begin{tabular}[c]{@{}l@{}}Jumlah sampel yang di prediksi\\ di saat yang bersamaan\end{tabular}                                               \\ \hline
 			TRAINING\_BATCH\_SIZE     & 8              & \begin{tabular}[c]{@{}l@{}}Jumlah sampel yang di fit di saat\\ yang bersamaan (lebih besar lebih\\ cepat)\end{tabular}                        \\ \hline
@@ -322,7 +330,7 @@ Penentuan nilai hyperparameter yang tepat merupakan salah satu langkah yang pent
 	\resizebox{\columnwidth}{!}{%
 		\begin{tabular}{|l|l|l|}
 			\hline
-			\textbf{Hyperparameter}   & \textbf{Nilai} & \textbf{Deskripsi}                                                                                                                            \\ \hline
+			\textbf{Hyperparameter}   & \textbf{Value} & \textbf{Description}                                                                                                                            \\ \hline
 			DISCOUNT                  & 0.99           & \begin{tabular}[c]{@{}l@{}}Nilai faktor discount dalam\\ perhitungan reward algoritma DQN\end{tabular}                                        \\ \hline
 			REPLAY\_MEMORY\_SIZE      & 20\_000        & \begin{tabular}[c]{@{}l@{}}Berapa banyak step terakhir yang\\ disimpan untuk training model\end{tabular}                                      \\ \hline
 			MIN\_REPLAY\_MEMORY\_SIZE & 5\_000         & \begin{tabular}[c]{@{}l@{}}Jumlah step minimum dalam\\ memori untuk memulai training\end{tabular}                                             \\ \hline
@@ -343,12 +351,12 @@ Penentuan nilai hyperparameter yang tepat merupakan salah satu langkah yang pent
 \fi
 
 \subsubsection{Epsilon}
-
+\label{sec:epsilon}
 \begin{table}[H]
 	\resizebox{\columnwidth}{!}{%
 		\begin{tabular}{|l|l|l|}
 			\hline
-			\textbf{Hyperparameter}   & \textbf{Nilai} & \textbf{Deskripsi}                                                                                                                            \\ \hline
+			\textbf{Hyperparameter}   & \textbf{Value} & \textbf{Description}                                                                                                                            \\ \hline
 			
 			START\_EPSILON            & 1              & \begin{tabular}[c]{@{}l@{}}Nilai epsilon saat pertamakali\\ mulai training\end{tabular}                                                       \\ \hline
 			EPSILON\_DECAY            & 0.9995         & \begin{tabular}[c]{@{}l@{}}Penurunan nilai epsilon di setiap\\ episodenya\end{tabular}                                                        \\ \hline
@@ -358,10 +366,9 @@ Penentuan nilai hyperparameter yang tepat merupakan salah satu langkah yang pent
 	\caption{Hyperparameter epsilon.}
 	\label{tb:hyperparameter_epsilon}
 \end{table}
-Penentuan parameter epsilon ditentukan oleh kondisi berikut. Epsilon akan bernilai 1 saat pertamakali memulai learning atau pada saat episode 0. Setiap dimulainya episode baru, nilai epsilon akan dikali dengan nilai 0.9995 hingga pada akhirnya akan bernilai 0.1 setelah 4700 episode. Pengurangan nilai epsilon akan berhenti setelah sampai pada nilai 0.1.
+The determination of the epsilon parameters is determined by the following conditions. Epsilon will be worth 1 when you first start learning or at episode 0. Every time a new episode starts, the epsilon value will be multiplied by 0.9995 until it will finally be 0.1 after 4700 episodes. The reduction in the epsilon value will stop after reaching the value of 0.1.
 
-Penentuan parameter \textit{epsilon-greedy} ini dilakukan agar agent mampu melakukan kegiatan eksplorasi dan eksploitasi dengan tepat. Sehingga hasil yang didapatkan akan baik dalam waktu cepat.
-\label{sec:epsilon}
+The determination of the epsilon-greedy parameter is carried out so that the agent is able to carry out exploration and exploitation activities appropriately. So that the results obtained will be good in a short time.
 
 \iffalse
 \begin{verbatim}
@@ -374,7 +381,7 @@ Penentuan parameter \textit{epsilon-greedy} ini dilakukan agar agent mampu melak
 \subsection{Arsitektur Model}
 \label{sec:arsitektur_model}
 
-Berikut adalah arsitektur yang digunakan:
+Here is the architecture used:
 
 \begin{table}[H]
 	\begin{tabular}{lll}
@@ -399,7 +406,7 @@ Berikut adalah arsitektur yang digunakan:
 	\label{tb:arsitektur_model}
 \end{table}
 
-Diberikan konvolusi kepada citra image sebanyak 3 kali. Setiap konvolusi dilakukan dengan average pooling. Proses selanjutnya setelah konvolusi adalah menambahkan data kecepatan agent. Kemudian pada akhir dari proses akan didapatkan output action berjumlah 3.
+Convolution is given to the images 3 times. Each convolution is done by average pooling. The next process after convolution is adding agent speed data. Then at the end of the process there will be 3 output actions.
 
 \subsection{Training}
 \label{sec:training}
@@ -411,7 +418,7 @@ Diberikan konvolusi kepada citra image sebanyak 3 kali. Setiap konvolusi dilakuk
 	\label{fig:blockdiagram}
 \end{figure}
 
-Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodologi training dari penelitian ini terdapat pada Gambar \ref{fig:blockdiagram}. \textit{Agent} yang berada pada simulasi melakukan suatu \textit{action} yang menyebabkan berubahnya \textit{state}. \textit{State} yang berupa citra segmentasi dan kecepatan agent (kmpj) serta \textit{reward }dari \textit{agent} kemudian dikirimkan ke DQN untuk dilakukan training. Hasil dari training berupa \textit{policy },  akan menentukan\textit{action} yang kemudian akan dilaksanakan oleh \textit{agent}. Kemudian proses tersebut akan terulang kembali menjadi sebuah siklus yang tak henti.
+The training process is carried out after all configurations are completed. The training methodology of this research is shown in Figure \ref{fig:blockdiagram}. The agent in the simulation performs an action that causes the state to change. The state in the form of a segmentation image and agent speed (kmpj) as well as a reward from the agent is then sent to DQN for training. The result of the training in the form of a policy will determine the action which will then be carried out by the agent. Then the process will repeat itself into an endless cycle.
 
 	
 	
@@ -419,7 +426,7 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 	\section{Testing and Result}
 	\subsection{Training DQN}
 	\label{sec:training_dqn}
-	Training algoritma DQN dilakukan dengan menggunakan hardware berikut:
+	DQN algorithm training is carried out using the following hardware:
 	\begin{table}[H]
 		\begin{tabular}{ll}
 			\textbf{CPU}  & Intel Core i5              \\
@@ -428,11 +435,11 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 			\textbf{Disk} & 256GB SSD M.2              \\
 			\textbf{OS}   & Windows 10                
 		\end{tabular}
-		\caption{Hardware yang digunakan untuk learning.}
+		\caption{Hardware used for training.}
 		\label{tb:hardwaresetup}
 	\end{table}
 	
-	Learning dilakukan dengan mesin lokal menggunakan GPU. Lingkungan software machine learning yang digunakan pada learning berupa:
+	Training is done on a local machine using a GPU. The machine learning software environment used in training is:
 	
 	\begin{table}[H]
 		\begin{tabular}{ll}
@@ -442,127 +449,63 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 			h5py & 3.1              \\
 			python & 3.7.9              \\
 		\end{tabular}
-		\caption{Lingkungan software yang digunakan untuk learning.}
+		\caption{Software environment used for training.}
 		\label{tb:softwaresetup}
 	\end{table}
 	
 	
-	Hasil dari proses training tersebut adalah model jaringan DQN yang merepresentasikan sistem perencanaan gerakan mobil otonom. Model tersebut disimpan dalam sebuah file berformat .model yang
-	selanjutnya dapat divisualisasikan dengan tensorboard untuk melihat hasil training algoritma DQN. 
+	The result of the training process is a DQN network model that represents an autonomous car movement planning system. The model is stored in a .model file format which can then be visualized with a tensorboard to see the results of the DQN algorithm training.
 	
-	\subsection{Training DQN pada Bundaran Simpang Empat dengan Segmentasi Grayscale}
+	\subsubsection{DQN training at Roundabout with Intersections using Grayscale Segmentation}
 	\label{sec:training_dqn_bundaran_simpangempat_segmentasi_grayscale}
 	
-	Training algoritma DQN pada bundaran simpang empat dengan segmentasi grayscale berlangsung selama 20 jam. Berikut adalah hasil visualisasi training algoritma DQN:
+	The training of the DAN algorithm at the four-way roundabout with grayscale segmentation lasted for 20 hours. Here are the results of the DQN algorithm training visualization:
 	
 	\begin{figure}[H] 
 		\centering
 		\includegraphics[width=1\linewidth]{images/tensorboard_bundaran_simpangempat_segmentasi_grayscale}
-		\caption{Tensorboard pada Bundaran Simpang Empat dengan Segmentasi Grayscale}
+		\caption{Tensorboard result on Roundabout with Intersections using Grayscale Segmentation}
 		\label{fig:tensorboard_bundaran_simpangempat_segmentasi_grayscale}
 	\end{figure}
 	
-	Dari hasil visualisasi training DQN pada Gambar \ref{fig:tensorboard_bundaran_simpangempat_segmentasi_grayscale}, dapat dilihat bahwa proses training algoritma DQN telah berjalan dengan baik. Hal itu dapat dilihat dari nilai akurasi, episode time, dan reward berkendara mobil otonom yang mengalami tren kenaikan seiring dengan berjalannya proses training.
+	From the results of the DQN training visualization in Figure  \ref{fig:tensorboard_bundaran_simpangempat_segmentasi_grayscale}, it can be seen that the DQN algorithm training process has been running well. This can be seen from the value of accuracy, episode time, and rewards for driving autonomous cars which have an increasing trend as the training process progresses.
 	
-	\subsection{Training DQN pada Bundaran Simpang Empat dengan Segmentasi Lanjutan}
+	\subsubsection{DQN training at Roundabout with Intersections using Advanced Segmentation}
 	\label{sec:training_dqn_bundaran_simpangempat_segmentasi_hitam_putih}
 	
-	Training algoritma DQN pada bundaran simpang empat dengan segmentasi lanjutan berlangsung selama 13 jam, 30 menit, dan 48 detik. Berikut adalah hasil visualisasi training algoritma DQN:
+	The DQN algorithm training at the four-way roundabout with advanced segmentation lasted for 13 hours, 30 minutes, and 48 seconds. Here are the results of the DQN algorithm training visualization:
 	
 	\begin{figure}[H] 
 		\centering
 		\includegraphics[width=1\linewidth]{images/tensorboard_bunderan_segmented}
-		\caption{Tensorboard pada Bundaran Simpang Empat dengan Segmentasi Lanjutan}
+		\caption{Tensorboard result on Roundabout with Intersections using Advanced Segmentation}
 		\label{fig:tensorboard_bundaran_simpangempat_segmentasi_lanjutan}
 	\end{figure}
 	
-	Dari hasil visualisasi training DQN pada Gambar \ref{fig:tensorboard_bundaran_tanpasimpang_segmentasi_lanjutan}, dapat dilihat bahwa proses training algoritma DQN telah berjalan dengan baik. Hal itu dapat dilihat dari nilai akurasi, episode time, dan reward berkendara mobil otonom yang mengalami tren kenaikan seiring dengan berjalannya proses training.
+	From the results of the DQN training visualization in Figure  \ref{fig:tensorboard_bundaran_tanpasimpang_segmentasi_lanjutan}, it can be seen that the DQN algorithm training process has been running well. This can be seen from the value of accuracy, episode time, and rewards for driving autonomous cars which have an increasing trend as the training process progresses.
 	
 	
-	\subsection{Training DQN pada Bundaran Tanpa Simpang dengan Segmentasi Lanjutan}
+	\subsubsection{DQN training at Roundabout without Intersections using Advanced Segmentation}
 	\label{sec:training_dqn_bundaran_nosimpang_segmentasi_hitam_putih}
 	
-	Training algoritma DQN pada bundaran tanpa simpang dengan segmentasi lanjutan berlangsung selama 26 jam dan 25 detik. Berikut adalah hasil visualisasi training algoritma DQN:
+	DQN algorithm training on roundabouts without intersections with advanced segmentation lasted 26 hours and 25 seconds. The following are the results of the DQN algorithm training visualization:
 	
 	\begin{figure}[H] 
 		\centering
 		\includegraphics[width=1\linewidth]{images/tensorboard_itemputih_nosimpang}
-		\caption{Tensorboard pada Bundaran Tanpa Simpang dengan Segmentasi Lanjutan}
+		\caption{Tensorboard result on Roundabout without Intersections using Advanced Segmentation}
 		\label{fig:tensorboard_bundaran_tanpasimpang_segmentasi_lanjutan}
 	\end{figure}
 	
-	Dari hasil visualisasi training DQN pada Gambar \ref{fig:tensorboard_bundaran_tanpasimpang_segmentasi_lanjutan}, dapat dilihat bahwa proses training algoritma DQN telah berjalan dengan baik. Hal itu dapat dilihat dari nilai akurasi, episode time, dan reward berkendara mobil otonom yang mengalami tren kenaikan seiring dengan berjalannya proses training.
+	From the results of the DQN training visualization in Figure  \ref{fig:tensorboard_bundaran_tanpasimpang_segmentasi_lanjutan}, it can be seen that the DQN algorithm training process has been running well. This can be seen from the value of accuracy, episode time, and rewards for driving autonomous cars which have an increasing trend as the training process progresses.
 	
 	
-	\iffalse
-	Training algoritma DQN dengan
-	berlangsung selama 81 jam, 12 menit, dan 38 detik. Berikut adalah hasil visualisasi training algoritma DQN:
-	
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/acc}
-		\caption{Nilai akurasi}
-		\label{fig:acc}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/loss}
-		\caption{Nilai loss}
-		\label{fig:loss}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/episode_time_avg}
-		\caption{Rerata waktu episode}
-		\label{fig:episode_time_avg}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/reward_raw_avg}
-		\caption{Rerata nilai reward \textit{raw}}
-		\label{fig:reward_raw_avg}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/reward_weighted_avg}
-		\caption{Rerata nilai reward \textit{weighted}}
-		\label{fig:reward_weighted_avg}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/q_action_0_forward_avg}
-		\caption{Nilai rerata q dari action forward}
-		\label{fig:q_action_0_forward_avg}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/q_action_1_forward_left_avg}
-		\caption{Nilai rerata q dari action forward left}
-		\label{fig:q_action_1_forward_left_avg}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/q_action_2_forward_right_avg}
-		\caption{Nilai rerata q dari action forward right}
-		\label{fig:q_action_2_forward_right_avg}
-	\end{figure}
-	\begin{figure}[H] 
-		\centering
-		\includegraphics[width=.7\linewidth]{images/q_all_actions_avg}
-		\caption{Nilai rerata q dari seluruh action}
-		\label{fig:q_all_actions_avg}
-	\end{figure}
-	
-	Dari hasil visualisasi training DQN diatas, dapat dilihat bahwa proses training algoritma DQN telah berjalan dengan baik. Hal itu dapat dilihat dari nilai akurasi, \textit{episode time}, dan \textit{reward} berkendara mobil otonom yang mengalami tren kenaikan seiring dengan berjalannya proses training.
-	
-	\fi
-	
-	\section{Pengujian Model DQN}
+	\subsection{DQN Model Test}
 	\label{sec:pengujian_model_dqn}
 	
-	Pada bagian ini, akan dilakukan pengujian model hasil dari proses training DQN. Pengujian dilakukan saat lingkungan berkendara dalam kondisi normal.
+	In this section, we will test the resulting model from the DQN training process. The test is carried out when the driving environment is under normal conditions.
 	
-	\subsection{Pengujian Model DQN pada Bundaran Simpang Empat dengan Segmentasi Grayscale}
+	\subsubsection{DQN Model Test at Roundabout with Intersections using Grayscale Segmentation}
 	\label{sec:pengujian_dqn_bundaran_simpangempat_segmentasi_grayscale}
 	
 	% Please add the following required packages to your document preamble:
@@ -604,11 +547,11 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 				7.645           & 29.516     & 39.559           & 1.573           & 0.349       \\ \hline
 			\end{tabular}%
 		}
-		\caption{30 Sampel Hasil Model DQN pada Bundaran Simpang Empat dengan Segmentasi Grayscale.}
+		\caption{30 result sample of DQN Model Test at Roundabout with Intersections using Grayscale Segmentation}
 		\label{tb:hasilpengujian_bunderan_grayscale}
 	\end{table}
 	
-	Dari hasil pengambilan sampel tersebut didapatkan kesimpulan seperti pada tabel \ref{tb:kesimpulan_bunderan_grayscale}.
+	From the results of the sampling, conclusions are obtained as in table \ref{tb:kesimpulan_bunderan_grayscale}.
 	
 	% Please add the following required packages to your document preamble:
 	% \usepackage{graphicx}
@@ -620,13 +563,13 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 				9.332                & 30.758     & 21.413           & 6.306           & 0.284       \\ \hline
 			\end{tabular}%
 		}
-		\caption{Kesimpulan Hasil Model DQN pada Bundaran Simpang Empat dengan Segmentasi Grayscale.}
+		\caption{Summary of DQN Model Test at Roundabout with Intersections using Grayscale Segmentation}
 		\label{tb:kesimpulan_bunderan_grayscale}
 	\end{table}
 	
 	
 	
-	\subsection{Pengujian Model DQN pada Bundaran Simpang Empat dengan Segmentasi Lanjutan}
+	\subsubsection{DQN Model Test at Roundabout with Intersections using Advanced Segmentation}
 	\label{sec:pengujian_dqn_bundaran_simpangempat_segmentasi_hitam_putih}
 	
 	\begin{table}[H]
@@ -666,11 +609,11 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 				8.578           & 34.796     & 15.489           & 1.456           & 0.316       \\ \hline
 			\end{tabular}%
 		}
-		\caption{30 Sampel Hasil Model DQN pada Bundaran Simpang Empat dengan Segmentasi Lanjutan.}
+		\caption{30 result sample of DQN Model Test at Roundabout with Intersections using Advanced Segmentation}
 		\label{tb:hasilpengujian_bunderan_segmented}
 	\end{table}
 	
-	Dari hasil pengambilan sampel tersebut didapatkan kesimpulan seperti pada tabel \ref{tb:kesimpulan_bunderan_segmented}.
+	From the results of the sampling, conclusions are obtained as in table \ref{tb:kesimpulan_bunderan_segmented}.
 	
 	
 	% Please add the following required packages to your document preamble:
@@ -683,11 +626,11 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 				13.326                & 35.476     & 27.011           & 2.967           & 0.278       \\ \hline
 			\end{tabular}%
 		}
-		\caption{Kesimpulan Hasil Model DQN pada Bundaran Simpang Empat dengan Segmentasi Lanjutan.}
+		\caption{Summary of DQN Model Test at Roundabout with Intersections using Advanced Segmentation}
 		\label{tb:kesimpulan_bunderan_segmented}
 	\end{table}
 	
-	\subsection{Pengujian Model DQN pada Bundaran Tanpa Simpang dengan Segmentasi Lanjutan}
+	\subsubsection{DQN Model Test at Roundabout without Intersections using Advanced Segmentation}
 	\label{sec:pengujian_dqn_bundaran_nosimpang_segmentasi_hitam_putih}
 	
 	\begin{table}[H]
@@ -724,11 +667,11 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 			10.937          & 31.784 & 33.864 & 0.095  \\ \hline
 			9.244           & 30.508 & 28.196 & 0.12   \\ \hline
 		\end{tabular}
-		\caption{30 Sampel Hasil Model DQN pada Bundaran Tanpa Simpang dengan Segmentasi Lanjutan.}
+		\caption{30 result sample of DQN Model Test at Roundabout without Intersections using Advanced Segmentation}
 		\label{tb:hasilpengujian_notbunderan_segmented}
 	\end{table}
 	
-	Dari hasil pengambilan sampel tersebut didapatkan kesimpulan seperti pada tabel \ref{tb:kesimpulan_notbunderan_segmented}.
+	From the results of the sampling, conclusions are obtained as in table \ref{tb:kesimpulan_notbunderan_segmented}.
 	
 	% Please add the following required packages to your document preamble:
 	% \usepackage{graphicx}
@@ -740,7 +683,7 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 				7.958                & 28.533     & 30.068     & 0.115       \\ \hline
 			\end{tabular}%
 		}
-		\caption{Kesimpulan Hasil Model DQN pada Bundaran Tanpa Simpang dengan Segmentasi Lanjutan.}
+		\caption{Summary of DQN Model Test at Roundabout without Intersections using Advanced Segmentation}
 		\label{tb:kesimpulan_notbunderan_segmented}
 	\end{table}
 	
@@ -748,29 +691,29 @@ Proses training dilakukan setelah seluruh konfigurasi selesai dilakukan. Metodol
 	\section{Conclusion}
 	\vspace{1ex}
 	
-	\subsection{Kesimpulan}
+	\subsection{Conclusion}
 	\label{sec:kesimpulan}
 	
-	Dari perancangan dan pengujian sistem yang telah dilakukan, diperoleh beberapa kesimpulan sebagai berikut. Kendala dan kekurangan yang penulis hadapi juga penulis tuliskan pada bagian saran dengan harapan untuk membantu pengembangan penelitian selanjutnya.
+	From the system design and testing that has been done, some conclusions are obtained as follows. The constraints and shortcomings that the authors face are also written in the suggestions section in the hope of assisting the development of further research.
 	
-	\begin{enumerate}[nolistsep]
+	\begin{enumerate}
 		
-		\item Sistem perencanaan gerakan mobil otonom berbasis algoritma DQN yang dirancang mampu melakukan akselerasi dan \textit{steer} yang mampu mengontrol mobil otonom dan memahami kondisi sekitarnya.
+		\item The autonomous car movement planning system based on the DQN algorithm which is designed to be able to accelerate and steer, is able to control the autonomous car and understand the surrounding conditions.
 		
-		\item Penggunaan \textit{state } citra dengan segmentasi lanjutan; yaitu menghasilkan output citra \textit{drivable }dan \textit{non-drivable} menghasilkan hasil yang lebih baik daripada segmentasi biasa dengan performa \textit{average\_episode\_length} 42.8\% lebih baik, \textit{average\_speed} 15.3\% lebih baik, dan \textit{average\_distance\_difference} 112.4\% lebih baik.
+		\item Use of image state with advanced segmentation; ie producing drivable and non-drivable image outputs produces better results than ordinary segmentation with 42.8\% better average episode length performance, 15.3\% better average speed, and 112.4\% better average distance difference.
 		
 	\end{enumerate}
 	
-	\subsection{Saran}
+	\subsection{Suggestion}
 	\label{chap:saran}
 	
-	Untuk pengembangan selanjutnya pada topik penelitian perencanaan gerakan mobil otonom dengan menggunakan algoritma DQN, terdapat beberapa saran yang diberikan, antara lain sebagai berikut:
+	For further development on the topic of autonomous car movement planning research using the DQN algorithm, there are several suggestions given, including the following:
 	
-	\begin{enumerate}[nolistsep]
+	\begin{enumerate}
 		
-		\item Sensor yang digunakan untuk navigasi dari \textit{agent }menggunakan algoritma DQN dapat ditambah menjadi lebih banyak seperti GPS serta LIDAR, agar \textit{agent} dapat bertindak dengan parameter yang lebih lengkap.
+		\item The sensors used for navigation from agents using the DQN algorithm can be added to more such as GPS and LIDAR, so that agents can act with more complete parameters.
 		
-		\item Proses training dapat dilakukan dengan waktu yang lebih panjang serta menggunakan mesin dengan tenaga komputasi yang lebih kuat agar didapatkan model yang konvergen.
+		\item The training process can be carried out with a longer time and using machines with stronger computing power in order to obtain a convergent model.
 	\end{enumerate}
 	
 	\bibliographystyle{IEEEtran}
